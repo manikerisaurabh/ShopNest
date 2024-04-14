@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaMoon, FaSun, FaSignOutAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ theme, updateTheme }) => {
+const Navbar = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
     const [showLinks, setShowLinks] = useState(false);

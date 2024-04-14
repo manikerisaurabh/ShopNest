@@ -1,8 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Footer = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            // Show the footer when scrolling down
+            setIsVisible(window.pageYOffset > 100);
+        };
+
+        // Add scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Clean up by removing the event listener
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        let timeoutId;
+        if (isVisible) {
+            // Set a timeout to hide the footer after 5 seconds
+            timeoutId = setTimeout(() => {
+                setIsVisible(false);
+            }, 5000);
+        }
+
+        // Clean up by clearing the timeout
+        return () => clearTimeout(timeoutId);
+    }, [isVisible]);
+
     return (
-        <footer className="footer footer-center p-6 bg-base-200 text-base-content rounded fixed bottom-0 left-0 w-full">
+        <footer className={`footer footer-center p-6 bg-base-200 text-base-content rounded fixed bottom-0 left-0 w-full ${isVisible ? 'visible' : 'invisible'}`}>
             <nav className="grid grid-flow-col gap-4">
                 <a className="link link-hover">About us</a>
                 <a className="link link-hover">Contact</a>

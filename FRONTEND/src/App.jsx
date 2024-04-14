@@ -35,6 +35,10 @@ function App() {
       path: "/cart",
       element: <><Navbar /> <Cart /></>
     },
+    {
+      path: "/login",
+      element: <><Navbar /> <Login /></>
+    },
   ]);
 
   const [theme, setTheme] = useState('light');
@@ -47,7 +51,7 @@ function App() {
   return (
     <div data-theme={theme}>
       <RouterProvider router={router} />
-      <Footer /> {/* Include Footer component here */}
+      <Footer />
     </div>
   );
 }
